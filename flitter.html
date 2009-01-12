@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Flitter</title>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />  
+  
+  <script>
+  $(document).ready(function(){
+      $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
+        $.each(data.trends, function(i,trend){
+          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'>" + trend.name + "</p></div>").appendTo("#flitter");
+          
+          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
+            $.each(data.items, function(i,item){
+              $("<img/>").attr("src", item.media.m).appendTo("#" + idize(trend.name))
+              .wrap("<a href='" + item.link + "'></a>");
+              if ( i == 4 ) return false;
+            });
+          });
+          
+          if ( i == data.trends.size ) return false;
+        });
+      });
+    
+    
+  });
+  
+  function sanitize(string){
+    new_trend_string = string;
+    new_trend_string = new_trend_string.replace("#","");
+    new_trend_string = new_trend_string.replace(" ", "+");
+    new_trend_string = new_trend_string.toLowerCase();
+    return new_trend_string;
+  }
+  
+  function idize(string){
+    new_id_string = string;
+    new_id_string = new_id_stringstring.replace(" ", "-");
+    new_id_stringstring = new_id_stringstring.replace("#", "hash-");
+  }
+  </script>
+</head>
+<body>
+  <div id="flitter"></div>
+</body>
+</html>
