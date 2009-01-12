@@ -1,1 +1,68 @@
-flitter
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Flitter</title>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />  
+  
+  <script>
+  $(document).ready(function(){
+      $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
+        $.each(data.trends, function(i,trend){
+          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'><a href='" + trend.url + "'>" + trend.name + "</a></p></div>").appendTo("#flitter");
+          
+          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
+            $.each(data.items, function(i,item){
+              $("<img/>").attr("src", item.media.m).appendTo("#" + idize(trend.name))
+              .wrap("<a href='" + item.link + "'></a>");
+              if ( i == 3 ) return false;
+            });
+          });
+          
+          if ( i == data.trends.size ) return false;
+        });
+      });
+    
+    
+  });
+  
+  function sanitize(string){
+    new_trend_string = string;
+    new_trend_string = new_trend_string.replace("#","");
+    new_trend_string = new_trend_string.replace(" ", "+");
+    new_trend_string = new_trend_string.toLowerCase();
+    return new_trend_string;
+  }
+  
+  function idize(string){
+    string = string.replace(" ", "-");
+    string = string.replace("#", "hash-");
+    return string;
+  }
+  </script>
+  
+  <style type="text/css">
+    body {
+      background-color:teal;
+    }
+    .trend {
+      background-color:white;
+      border:1px solid red;
+      margin:1.5em;
+      padding:1.5em;
+    }
+    .word {
+      color:#777777;
+      font-size:small;
+    }
+    img {
+      height:150px;
+      margin:1em;
+    }
+  </style>
+</head>
+<body>
+  <div id="flitter"></div>
+</body>
+</html>
