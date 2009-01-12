@@ -28,16 +28,16 @@
   });
   
   function sanitize(string){
-    new_trend_string = string;
-    new_trend_string = new_trend_string.replace("#","");
-    new_trend_string = new_trend_string.replace(/ /g, "+");
-    new_trend_string = new_trend_string.toLowerCase();
-    return new_trend_string;
+    string = string.replace("#","");
+    string = string.replace(/ /g, "+");
+    string = string.toLowerCase();
+    return encodeURI(string);
   }
   
   function idize(string){
     string = string.replace(/ /g, "-");
     string = string.replace("#", "hash-");
+    string = string.replace("&", "amp-");
     return string;
   }
   </script>
