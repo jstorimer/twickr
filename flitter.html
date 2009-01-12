@@ -10,13 +10,13 @@
   $(document).ready(function(){
       $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
         $.each(data.trends, function(i,trend){
-          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'>" + trend.name + "</p></div>").appendTo("#flitter");
+          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'><a href='" + trend.url + "'>" + trend.name + "</a></p></div>").appendTo("#flitter");
           
           $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
             $.each(data.items, function(i,item){
               $("<img/>").attr("src", item.media.m).appendTo("#" + idize(trend.name))
               .wrap("<a href='" + item.link + "'></a>");
-              if ( i == 4 ) return false;
+              if ( i == 3 ) return false;
             });
           });
           
@@ -36,11 +36,31 @@
   }
   
   function idize(string){
-    new_id_string = string;
-    new_id_string = new_id_stringstring.replace(" ", "-");
-    new_id_stringstring = new_id_stringstring.replace("#", "hash-");
+    string = string.replace(" ", "-");
+    string = string.replace("#", "hash-");
+    return string;
   }
   </script>
+  
+  <style type="text/css">
+    body {
+      background-color:teal;
+    }
+    .trend {
+      background-color:white;
+      border:1px solid red;
+      margin:1.5em;
+      padding:1.5em;
+    }
+    .word {
+      color:#777777;
+      font-size:small;
+    }
+    img {
+      height:150px;
+      margin:1em;
+    }
+  </style>
 </head>
 <body>
   <div id="flitter"></div>
