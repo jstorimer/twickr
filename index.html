@@ -10,7 +10,7 @@
   $(document).ready(function(){
       $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
         $.each(data.trends, function(i,trend){
-          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'><a href='" + trend.url + "'>" + trend.name + "</a></p></div>").appendTo("#flitter");
+          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'>Twitter Trend: <a href='" + trend.url + "'>" + trend.name + "</a></p><p class='word'>Images from Flickr tagged with " + trend.name + ":</div>").appendTo("#flitter");
           
           $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
             $.each(data.items, function(i,item){
