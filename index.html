@@ -45,6 +45,7 @@
   <style type="text/css">
     body {
       background-color:teal;
+      font-family:futura, arial, helvetica;
     }
     .trend {
       background-color:white;
@@ -60,9 +61,28 @@
       height:150px;
       margin:1em;
     }
+    
+    #info{
+      border-bottom: 1px white solid;
+      border-left: 1px white solid;
+      border-right: 1px white solid;
+      margin: 0 1.5em 1.5em 1.5em;
+      padding: .5em;
+      background-color: black;
+      color: white;
+    }
+    
+    #info a{
+      color: white;
+    }
   </style>
 </head>
 <body>
+  <div id="info">
+    <p>
+      This page grabs the latest trends from <a href="http://search.twitter.com/trends">Twitter</a> and search for images on <a href="http://flickr.com">Flickr</a> tagged with those trends. And this is all done in JS using the Twitter and Flickr <a href="">JSONP</a> API's. It's a social technical experiment. <a href="http://github.com/jstorimer/flitter">The source</a> is on Github.
+    </p>
+  </div>
   <div id="flitter"></div>
 </body>
 </html>
