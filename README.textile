@@ -2,4 +2,4 @@ This is a social/technical experiment I did with Flick and Twitter API's using J
 
 See the blog post: "http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp":http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp
 
-See it in action: "http://jstorimer.github.com/flitter/":http://jstorimer.github.com/flitter/
+See it in action: "http://jstorimer.github.com/twickr/":http://jstorimer.github.com/twickr/
