@@ -2,7 +2,7 @@
                     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Flitter</title>
+  <title>Twickr</title>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />  
   
@@ -10,7 +10,7 @@
   $(document).ready(function(){
       $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
         $.each(data.trends, function(i,trend){
-          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'>Twitter Trend: <a href='" + trend.url + "'>" + trend.name + "</a></p><p class='word'>Images from Flickr tagged with " + trend.name + ":</div>").appendTo("#flitter");
+          $("<div id='" + idize(trend.name) + "' class='trend'><p class='word'>Twitter Trend: <a href='" + trend.url + "'>" + trend.name + "</a></p><p class='word'>Images from Flickr tagged with " + trend.name + ":</div>").appendTo("#twickr");
           
           $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
             $.each(data.items, function(i,item){
@@ -80,10 +80,10 @@
 <body>
   <div id="info">
     <p>
-      This page grabs the latest trends from <a href="http://search.twitter.com/">Twitter</a> and search for images on <a href="http://flickr.com">Flickr</a> tagged with those trends. And this is all done in JS using the Twitter and Flickr API's and <a href="http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp">JSONP</a> . It's a social technical experiment. <a href="http://github.com/jstorimer/flitter">The source</a> is on Github.
+      This page grabs the latest trends from <a href="http://search.twitter.com/">Twitter</a> and search for images on <a href="http://flickr.com">Flickr</a> tagged with those trends. And this is all done in JS using the Twitter and Flickr API's and <a href="http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp">JSONP</a> . It's a social technical experiment. <a href="http://github.com/jstorimer/twickr">The source</a> is on Github.
     </p>
   </div>
-  <div id="flitter"></div>
+  <div id="twickr"></div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
