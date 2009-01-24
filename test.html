@@ -6,6 +6,17 @@
  <body>
   <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
   <fb:login-button></fb:login-button>
+  
+  <fb:serverfbml style="width: 350px;">
+    <script type="text/fbml">
+    <fb:comments xid="twickr_board" 
+              canpost="true"
+              candelete="false">
+       <fb:title>Discuss the Turtles</fb:title>
+    </fb:comments>  
+    </script>
+  </fb:serverfbml>
+  
   <script type="text/javascript">
     FB.init("0063a893872e6ace72c4d54ce27d0e13", "/twickr/xd_receiver.htm");
   </script> 
