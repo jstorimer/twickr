@@ -10,6 +10,9 @@
   <fb:profile-pic uid="loggedinuser"></fb:profile-pic>
   Welcome back, <fb:name uid="loggedinuser" useyou="false"></fb:name>
   
+  <fb:prompt-permission perms="status_update">Allow us to update your status?</fb:prompt-permission>
+  <fb:prompt-permission perms="create_listing">Allow us to create listings?</fb:prompt-permission>
+  
   <fb:serverfbml style="width: 350px;">
     <script type="text/fbml">
       <fb:fbml>
@@ -22,6 +25,10 @@
       </fb:fbml>
     </script>
   </fb:serverfbml>
+  
+  <fb:comments xid="titans_comments" canpost="true" candelete="false" returnurl="http://apps.facebook.com/myapp/titans/">
+  <fb:title>Talk about the Titans</fb:title>
+  </fb:comments>
   
   <fb:share-button class="url" href="http://jstorimer.github.com/twickr" />
   
