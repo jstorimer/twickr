@@ -13,7 +13,7 @@
   <fb:prompt-permission perms="status_update">Allow us to update your status?</fb:prompt-permission>
   <fb:prompt-permission perms="create_listing">Allow us to create listings?</fb:prompt-permission>
   
-  <fb:serverfbml style="width: 350px;">
+  <!-- <fb:serverfbml style="width: 350px;">
     <script type="text/fbml">
       <fb:fbml>
         <fb:comments xid="twickr_board" 
@@ -24,12 +24,16 @@
         </fb:comments>  
       </fb:fbml>
     </script>
-  </fb:serverfbml>
+  </fb:serverfbml> -->
   
-  <fb:comments xid="titans_comments" canpost="true" candelete="false" returnurl="http://apps.facebook.com/myapp/titans/">
-  <fb:title>Talk about the Titans</fb:title>
-  </fb:comments>
-  
+  <fb:serverfbml>
+    <script type="text/fbml">
+    <fb:comments xid="twickr_comments" canpost="true" candelete="false" returnurl="http://apps.facebook.com/connect-twickr/">
+    <fb:title>Talk about Twickr</fb:title>
+    </fb:comments>
+    </script>
+    </fb:serverfbml>
+      
   <fb:share-button class="url" href="http://jstorimer.github.com/twickr" />
   
   <script type="text/javascript">
