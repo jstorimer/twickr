@@ -12,17 +12,25 @@
   
   <fb:serverfbml style="width: 350px;">
     <script type="text/fbml">
-    <fb:comments xid="twickr_board" 
-              canpost="true"
-              candelete="false"
-              numposts="10">
-       <fb:title>Discuss Twickr</fb:title>
-    </fb:comments>  
+      <fb:fbml>
+        <fb:comments xid="twickr_board" 
+                  canpost="true"
+                  candelete="false"
+                  numposts="10">
+           <fb:title>Discuss Twickr</fb:title>
+        </fb:comments>  
+      </fb:fbml>
     </script>
   </fb:serverfbml>
   
+  <fb:share-button class="url" href="http://jstorimer.github.com/twickr" />
+  
   <script type="text/javascript">
-    FB.init("0063a893872e6ace72c4d54ce27d0e13", "/twickr/xd_receiver.htm");
+  FB_RequireFeatures(["XFBML"], function()
+      {
+        FB.Facebook.init("0063a893872e6ace72c4d54ce27d0e13", "/twickr/xd_receiver.htm");        
+        // FB.Facebook.init("YOUR_API_KEY_HERE", "xd_receiver.htm");
+      });
   </script> 
  </body>
 </html
