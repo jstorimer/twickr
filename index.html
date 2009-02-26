@@ -14,9 +14,9 @@
           
           $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
             $.each(data.items, function(i,item){
-              $("<img/>").attr("src", item.media.m).appendTo("#" + idize(trend.name))
+              $("<img/>").attr("src", item.media.m).attr("class", "flickr").appendTo("#" + idize(trend.name))
               .wrap("<a href='" + item.link + "'></a>");
-              if ( i == 3 ) return false;
+              if ( i == 2 ) return false;
             });
           });
           
@@ -57,7 +57,7 @@
       color:#777777;
       font-size:small;
     }
-    img {
+    img.flickr {
       height:150px;
       margin:1em;
     }
@@ -75,6 +75,16 @@
     #info a{
       color: white;
     }
+    
+    #twickr{
+      float:left;
+      width: 700px;
+    }
+    
+    #fb{
+      float:left;
+      width: 200px;
+    }
   </style>
 </head>
 <body>
@@ -83,7 +93,20 @@
       This page grabs the latest trends from <a href="http://search.twitter.com/">Twitter</a> and search for images on <a href="http://flickr.com">Flickr</a> tagged with those trends. And this is all done in JS using the Twitter and Flickr API's and <a href="http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp">JSONP</a> . It's a social technical experiment. <a href="http://github.com/jstorimer/twickr">The source</a> is on Github.
     </p>
   </div>
+
   <div id="twickr"></div>
+  
+  <div id="fb">
+    <script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+    <fb:login-button></fb:login-button>
+    <fb:comments numposts="15" width="300px"></fb:comments>
+  </div>
+  <script type="text/javascript">
+  FB_RequireFeatures(["XFBML"], function()
+      {
+        FB.Facebook.init("0063a893872e6ace72c4d54ce27d0e13", "/twickr/xd_receiver.htm");        
+      });
+  </script> 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
