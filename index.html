@@ -17,7 +17,7 @@
             $.each(data.items, function(i,item){
               $("<img/>").attr("src", item.media.m).attr("class", "flickr").appendTo("#" + idize(trend.name))
               .wrap("<a href='" + item.link + "'></a>");
-              if ( i == 2 ) return false;
+              if ( i == 1 ) return false;
             });
           });
           
