@@ -30,7 +30,7 @@
         $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + $.sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
           $.each(data.items, function(i,item){
             $("<img/>").attr("src", item.media.m).attr("class", "flickr").appendTo("#" + $.idize(trend.name))
-            .wrap("<a href='" + item.link + "'></a>").append("<fb:share-button href='" + item.media.m + "'>").append(" </fb:share-button>");
+            .wrap("<a href='" + item.link + "'></a>").append("<fb:share-button class='url' href='" + item.media.m + "' />");
             if ( i == 1 ) return false;
           });
         });
