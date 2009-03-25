@@ -9,36 +9,36 @@
   
   <script>
   $(document).ready(function(){
-      $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
-        $.each(data.trends, function(i,trend){
-          $("<div id='" + idize(trend.name) + "' class='box'><p class='word'>Twitter Trend: <a href='" + trend.url + "'>" + trend.name + "</a></p><p class='word'>Images from Flickr tagged with " + trend.name + ":</div>").appendTo("#twickr");
-          
-          $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
-            $.each(data.items, function(i,item){
-              $("<img/>").attr("src", item.media.m).attr("class", "flickr").appendTo("#" + idize(trend.name))
-              .wrap("<a href='" + item.link + "'></a>").append("<fb:share-button href='" + item.media.m + "'>").append(" </fb:share-button>");
-              if ( i == 1 ) return false;
-            });
+    $.sanitize = function(string){
+      string = string.replace("#","");
+      string = string.replace(/ /g, "+");
+      string = string.toLowerCase();
+      return encodeURI(string);
+    };
+
+    $.idize = function(string){
+      string = string.replace(/ /g, "-");
+      string = string.replace("#", "hash-");
+      string = string.replace("&", "amp-");
+      return string;
+    };
+    
+    $.getJSON("http://search.twitter.com/trends.json?callback=?", function(data){
+      $.each(data.trends, function(i,trend){
+        $("<div id='" + $.idize(trend.name) + "' class='box'><p class='word'>Twitter Trend: <a href='" + trend.url + "'>" + trend.name + "</a></p><p class='word'>Images from Flickr tagged with " + trend.name + ":</div>").appendTo("#twickr");
+        
+        $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?tags=" + $.sanitize(trend.name) + "&tagmode=any&format=json&jsoncallback=?", function(data){
+          $.each(data.items, function(i,item){
+            $("<img/>").attr("src", item.media.m).attr("class", "flickr").appendTo("#" + $.idize(trend.name))
+            .wrap("<a href='" + item.link + "'></a>").append("<fb:share-button href='" + item.media.m + "'>").append(" </fb:share-button>");
+            if ( i == 1 ) return false;
           });
-          
-          if ( i == data.trends.size ) return false;
         });
+        
+        if ( i == data.trends.size ) return false;
       });
+    });
   });
-  
-  function sanitize(string){
-    string = string.replace("#","");
-    string = string.replace(/ /g, "+");
-    string = string.toLowerCase();
-    return encodeURI(string);
-  }
-  
-  function idize(string){
-    string = string.replace(/ /g, "-");
-    string = string.replace("#", "hash-");
-    string = string.replace("&", "amp-");
-    return string;
-  }
   </script>
   
   <style type="text/css">
