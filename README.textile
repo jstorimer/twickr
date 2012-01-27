@@ -1,5 +1,3 @@
 This is a social/technical experiment I did with Flick and Twitter API's using JSONP.
 
-See the blog post: "http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp":http://www.jstorimer.com/blogs/my-blog/655992-what-the-heck-is-jsonp
-
-See it in action: "http://jstorimer.github.com/twickr/":http://jstorimer.github.com/twickr/
+See the blog post: "http://jstorimer.com/js/2009/01/12/what-the-heck-is-jsonp.html":http://jstorimer.com/js/2009/01/12/what-the-heck-is-jsonp.html
